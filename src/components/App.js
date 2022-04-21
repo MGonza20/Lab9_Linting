@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import Board from './Board';
-import './app.css';
+import React, { useState, useEffect } from 'react'
+import Board from './Board'
+import './app.css'
 
 export default function App() {
-  const [card1, setCard1] = useState(null);
-  const [card2, setCard2] = useState(null);
-  const [movements, setMovements] = useState(0);
-  const [matches, setMatches] = useState(0);
-  const [block, setBlock] = useState(false);
-  const [gameComplete, setGameComplete] = useState(false);
+  const [card1, setCard1] = useState(null)
+  const [card2, setCard2] = useState(null)
+  const [movements, setMovements] = useState(0)
+  const [matches, setMatches] = useState(0)
+  const [block, setBlock] = useState(false)
+  const [gameComplete, setGameComplete] = useState(false)
   const [cardContent, setCardContent] = useState([
     {
       src: 'https://i.ibb.co/NLQwhdP/elm.png',
@@ -46,56 +46,67 @@ export default function App() {
       src: 'https://i.ibb.co/MSR12z7/sketch.png',
       paired: false,
     },
-  ]);
+  ])
 
   const setup = () => {
-    const setup = cardContent.concat(cardContent).sort(() => Math.random() - 0.5).map((element) => ({ ...element, id: Math.floor(Math.random() * 10000) + 1 }));
-    setCardContent(setup);
-  };
+    const setup = cardContent
+      .concat(cardContent)
+      .sort(() => Math.random() - 0.5)
+      .map((element) => ({
+        ...element,
+        id: Math.floor(Math.random() * 10000) + 1,
+      }))
+    setCardContent(setup)
+  }
 
   useEffect(() => {
-    setup();
-    setMovements(0);
-  }, []);
+    setup()
+    setMovements(0)
+  }, [])
 
   useEffect(() => {
     if (cardContent.length === matches * 2) {
-      setGameComplete(true);
+      setGameComplete(true)
     }
-  }, [matches]);
+  }, [matches])
 
   const again = () => {
-    setBlock(false);
-    setCard1(null);
-    setCard2(null);
-  };
+    setBlock(false)
+    setCard1(null)
+    setCard2(null)
+  }
 
   const countMatch = () => {
-    setMatches(matches + 1);
-  };
+    setMatches(matches + 1)
+  }
 
   const countMovements = () => {
-    setMovements(movements + 1);
-  };
+    setMovements(movements + 1)
+  }
 
   const flip = (id, card) => {
     if (card1) {
-      setCard2(card);
+      setCard2(card)
     } else {
-      setCard1(card);
+      setCard1(card)
     }
-    countMovements();
-  };
+    countMovements()
+  }
 
   useEffect(() => {
     if (card1 && card2) {
-      setBlock(true);
+      setBlock(true)
       card1.src === card2.src
-        ? (setCardContent(cardContent.map((element) => (element.src === card1.src
-          ? { ...element, paired: true } : element))), again(), countMatch())
-        : (setTimeout(() => again(), 1200));
+        ? (setCardContent(
+            cardContent.map((element) =>
+              element.src === card1.src ? { ...element, paired: true } : element
+            )
+          ),
+          again(),
+          countMatch())
+        : setTimeout(() => again(), 1200)
     }
-  }, [card1, card2]);
+  }, [card1, card2])
 
   return (
     <div>
@@ -107,8 +118,7 @@ export default function App() {
       <div className="infoContainer">
         <p className="completedLabel">
           {' '}
-          {gameComplete ? '¡Has completado el juego!' : ''}
-          {' '}
+          {gameComplete ? '¡Has completado el juego!' : ''}{' '}
         </p>
       </div>
 
@@ -120,5 +130,5 @@ export default function App() {
         block={block}
       />
     </div>
-  );
+  )
 }

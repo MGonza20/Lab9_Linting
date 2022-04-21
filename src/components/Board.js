@@ -1,10 +1,8 @@
-import React from 'react';
-import Card from './Card';
-import './board.css';
+import React from 'react'
+import Card from './Card'
+import './board.css'
 
-export default function Board({
-  cardsProp, onFlip, card1, card2, block,
-}) {
+export default function Board({ cardsProp, onFlip, card1, card2, block }) {
   return (
     <div className="board">
       {cardsProp.map((element, index) => (
@@ -17,5 +15,5 @@ export default function Board({
         />
       ))}
     </div>
-  );
+  )
 }

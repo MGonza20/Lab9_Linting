@@ -1,10 +1,8 @@
 .board {
-    display: grid;
-    margin: auto;
-    grid-template-columns: repeat(6, auto);
-    align-items: center;
-    align-content: center;
-    max-width: 60rem; 
+  display: grid;
+  margin: auto;
+  grid-template-columns: repeat(6, auto);
+  align-items: center;
+  align-content: center;
+  max-width: 60rem;
 }
-
-  
