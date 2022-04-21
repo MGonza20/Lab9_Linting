@@ -17,6 +17,8 @@
     "plugins": [
         "react"
     ],
+    "ignorePatterns": ["node_modules", "bundle"],
     "rules": {
+        "linebreak-style": ["error", "windows"]
     }
 }
